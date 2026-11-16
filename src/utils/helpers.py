@@ -11,6 +11,7 @@ from socket import socket, AF_INET, SOCK_STREAM
 from typing import Dict
 
 from src.utils.config import get_ammeter_settings
+from src.utils.logger import get_default_logger
 
 
 def run_greenlee_emulator(port: int):
@@ -26,22 +27,24 @@ def run_circutor_emulator(port: int):
     circutor.start_server()
 
 def setup_emulators(config: Dict):
-    for ammeterType, details in config["ammeters"].items():
+    log = get_default_logger(config)
+    for ammeterType, details in config.get("ammeters", {}).items():
         ammeter = AmmeterType(ammeterType) # cast to enum
-        port = details["port"]
+        port = details.get("port", {})
 
         match ammeter:
             case AmmeterType.GREENLEE:
-                print(f"Starting Greenlee on port {port}")
+                log.debug(f"Starting Greenlee on port {port}")
                 threading.Thread(target=run_greenlee_emulator, args=(port,), daemon=True).start()
             case AmmeterType.ENTES:
-                print(f"Handling Entes on port {port}")
+                log.debug(f"Starting Entes on port {port}")
                 threading.Thread(target=run_entes_emulator, args=(port,), daemon=True).start()
             case AmmeterType.CIRCUTOR:
-                print(f"Handling Circutor on port {port}")
+                log.debug(f"Starting Circutor on port {port}")
                 threading.Thread(target=run_circutor_emulator, args=(port,), daemon=True).start()
 
 def request_measurement_from_ammeter(ammeter_type: AmmeterType, device_id: str, config: Dict) -> Measurement | None:
+    log = get_default_logger(config)
     with socket(AF_INET, SOCK_STREAM) as s:
         port = get_ammeter_settings(config, ammeter_type, "port")
         command = get_ammeter_settings(config, ammeter_type, "command")
@@ -56,5 +59,7 @@ def request_measurement_from_ammeter(ammeter_type: AmmeterType, device_id: str, 
                 device_type=ammeter_type,
                 device_id=device_id,
             )
-        else: return None
+        else:
+            log.warning(f"{ammeter_type} didnt return data on port {port}, using command {command}")
+            return None
 

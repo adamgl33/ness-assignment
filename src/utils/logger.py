@@ -1,27 +1,59 @@
 import logging
 import os
+import sys
 from datetime import datetime
+from typing import Dict
+
+from src.utils.config import get_logger_default_name, get_test_name, get_logger_level, get_logger_dir, load_config
+
 
 class TestLogger:
-    def __init__(self, test_name: str):
-        self._test_name = test_name
-        self.logger = self._setup_logger()
+    def __init__(self, config: Dict):
+        self._test_name = get_test_name(config)
+        self._logger_name = get_logger_default_name(config)
+        self._level = get_logger_level(config)
+        self.log_file = None
+        self.logger = self._setup_logger(config)
 
-    def _setup_logger(self) -> logging.Logger:
+    def _setup_logger(self, config: Dict) -> logging.Logger:
         """
-        הגדרת הלוגר עם פורמט מותאם וכתיבה לקובץ
+        setup logger to output to file and stdout for CI
         """
-        # יצירת תיקיית הלוגים
-        log_dir = "results/logs"
+        # create logger directory
+        log_dir = get_logger_dir(config)
         os.makedirs(log_dir, exist_ok=True)
 
-        # הגדרת שם הקובץ עם תאריך ומזהה הבדיקה
+        # configure filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_file = f"{log_dir}/{timestamp}_{self._test_name}.log"
+        self.log_file = log_file
 
-        # הגדרת הלוגר
-        logger = logging.getLogger(f"test_{self._test_name}")
+        # config logger
+        logger = logging.getLogger(self._logger_name)
+        logger.setLevel(self._level)
 
+        # prevent duplicate handlers
+        if logger.handlers:
+            logger.handlers.clear()
+
+        # log format
+        formatter = logging.Formatter(
+            fmt="%(asctime)s | %(levelname)-7s | %(message)s",
+            datefmt="%H:%M:%S",
+        )
+
+        # file handler
+        file_handler = logging.FileHandler(log_file, encoding="utf-8")
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
+
+        # stdout handler
+        console_handler = logging.StreamHandler(sys.stdout)
+        console_handler.setFormatter(formatter)
+        logger.addHandler(console_handler)
+
+        # prevent root logger duplicate writes
+        logger.propagate = False
 
         return logger
 
@@ -35,4 +67,20 @@ class TestLogger:
         self.logger.debug(message)
 
     def warning(self, message: str):
-        self.logger.warning(message) 
+        self.logger.warning(message)
+
+if __name__ == "__main__":
+    config_path= "../../config/config.yaml"
+    config = load_config(config_path)
+    log = TestLogger(config)
+    log.info("logger test")
+    log.debug("debug test")
+    log.warning("warn test")
+    log.error("error test")
+    log.info(f"Log file: {log.log_file}")
+
+def get_default_logger(config: Dict) -> logging.Logger:
+    name = get_logger_default_name(config)
+    return logging.getLogger(name)
+
+

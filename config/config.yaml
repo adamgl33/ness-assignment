@@ -1,3 +1,6 @@
+test:
+  name: "circuit_current_test"
+
 testing:
   sampling:
     measurements_count: NULL
@@ -20,5 +23,10 @@ analysis:
   visualization:
     enabled: true
     plot_types:
+
+logger:
+  level: "DEBUG"
+  directory: "../results/logs"
+  name: "default_logger"
 
 result_management:
