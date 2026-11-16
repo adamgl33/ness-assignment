@@ -3,9 +3,9 @@ test:
 
 testing:
   sampling:
-    measurements_count: NULL
-    total_duration_seconds: NULL
-    sampling_frequency_hz: NULL
+    measurements_count: 5
+    total_duration_seconds: 5
+    sampling_frequency_hz: null
 
 ammeters:
   greenlee:

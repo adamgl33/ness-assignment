@@ -13,6 +13,9 @@ def load_config(config_path: str) -> Dict:
     with open(config_path, 'r') as f:
         return yaml.safe_load(f)
 
+def get_ammeters(config: Dict) -> Dict:
+    return config.get("ammeters", {})
+
 def get_ammeter_settings(config: Dict, ammeter_type: str | AmmeterType, config_param: str, default: Any = None,) -> Any:
     return config.get("ammeters", {}).get(ammeter_type, {}).get(config_param, default)
 
@@ -31,3 +34,6 @@ def get_logger_dir(config: Dict) -> Any:
 def get_log_level_from_string(level_name: str, default: int = logging.INFO) -> int:
     level = getattr(logging, level_name.upper(), None)
     return level if isinstance(level, int) else default
+
+def get_sampling_config(config: Dict) -> Any:
+    return config.get("testing", {}).get("sampling", {})

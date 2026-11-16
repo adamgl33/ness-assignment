@@ -1,9 +1,22 @@
+"""
+Test Framework loads config and runs the tests
+
+Notes:
+- Most configuration is fetched from the config file
+- emulators are configured based on what is listed in the config
+- config is passed around and can easily be mocked for testing
+- config file can easily be modified by CI by dumping inside the docker
+"""
+
+
 import time
 from typing import Dict
 
 from src.models.ammeter_type import AmmeterType
-from src.utils.config import load_config, get_test_name
-from src.utils.helpers import setup_emulators, request_measurement_from_ammeter
+from src.models.sampling_config import SamplingConfig
+from src.testing.sampling_engine import SamplingEngine
+from src.utils.config import load_config, get_test_name, get_ammeters
+from src.utils.helpers import setup_emulators
 from src.utils.logger import TestLogger, get_default_logger
 
 
@@ -14,16 +27,22 @@ class AmmeterTestFramework:
         setup_emulators(self.config)
         time.sleep(3)
 
-
     def run_test(self, config: Dict) :
         log = get_default_logger(config)
         log.info(f"Running test: {get_test_name(config)}")
-        m = request_measurement_from_ammeter(AmmeterType.GREENLEE, "gree", config)
-        m1 = request_measurement_from_ammeter(AmmeterType.ENTES, "ent", config)
-        m2 = request_measurement_from_ammeter(AmmeterType.CIRCUTOR, "circ1", config)
-        log.info(m)
-        log.info(m1)
-        log.info(m2)
+        cfg = SamplingConfig.from_config(config)
+        log.info(f"Sampling config: {cfg}")
+
+        for ammeter in get_ammeters(config).keys():
+            log.info(f"Sampling ammeter: {ammeter}")
+            ammeter_type = AmmeterType(ammeter)
+            try:
+                engine = SamplingEngine(ammeter_type, "device id", config)
+                samples = engine.run()
+                log.info(f"    -> {len(samples)} samples collected\n")
+            except ValueError as e:
+                log.error(f"    ERROR -> {e}\n")
+
 
 if __name__ == "__main__":
 
