@@ -1,0 +1,52 @@
+{
+  "device_type": "entes",
+  "device_id": "entes device 456",
+  "config": {
+    "measurements_count": 5,
+    "total_duration_seconds": 5,
+    "sampling_frequency_hz": null
+  },
+  "duration": 5.000628305999271,
+  "samples": [
+    {
+      "value_amperes": 24.186885670604905,
+      "timestamp": 18327.14405828,
+      "wall_time": "2026-11-17T20:10:18.788037+00:00",
+      "device_type": "entes",
+      "device_id": "entes device 456",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 82.74163847588976,
+      "timestamp": 18328.144799311,
+      "wall_time": "2026-11-17T20:10:19.788779+00:00",
+      "device_type": "entes",
+      "device_id": "entes device 456",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 85.22796390913338,
+      "timestamp": 18329.14473172,
+      "wall_time": "2026-11-17T20:10:20.788711+00:00",
+      "device_type": "entes",
+      "device_id": "entes device 456",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 30.23787664161367,
+      "timestamp": 18330.144625815,
+      "wall_time": "2026-11-17T20:10:21.788606+00:00",
+      "device_type": "entes",
+      "device_id": "entes device 456",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 19.416328486136166,
+      "timestamp": 18331.144818873,
+      "wall_time": "2026-11-17T20:10:22.788798+00:00",
+      "device_type": "entes",
+      "device_id": "entes device 456",
+      "unit": "A"
+    }
+  ]
+}

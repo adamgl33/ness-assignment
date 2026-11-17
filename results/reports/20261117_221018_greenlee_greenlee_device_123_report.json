@@ -1,0 +1,52 @@
+{
+  "device_type": "greenlee",
+  "device_id": "greenlee device 123",
+  "config": {
+    "measurements_count": 5,
+    "total_duration_seconds": 5,
+    "sampling_frequency_hz": null
+  },
+  "duration": 5.0002281079978275,
+  "samples": [
+    {
+      "value_amperes": 0.06332775380089467,
+      "timestamp": 18322.141527079,
+      "wall_time": "2026-11-17T20:10:13.785507+00:00",
+      "device_type": "greenlee",
+      "device_id": "greenlee device 123",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 0.03871619607581954,
+      "timestamp": 18323.141415097,
+      "wall_time": "2026-11-17T20:10:14.785391+00:00",
+      "device_type": "greenlee",
+      "device_id": "greenlee device 123",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 0.274974722474699,
+      "timestamp": 18324.141565588,
+      "wall_time": "2026-11-17T20:10:15.785545+00:00",
+      "device_type": "greenlee",
+      "device_id": "greenlee device 123",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 0.1269141149729004,
+      "timestamp": 18325.141757511,
+      "wall_time": "2026-11-17T20:10:16.785737+00:00",
+      "device_type": "greenlee",
+      "device_id": "greenlee device 123",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 0.10407195362598205,
+      "timestamp": 18326.14165132,
+      "wall_time": "2026-11-17T20:10:17.785631+00:00",
+      "device_type": "greenlee",
+      "device_id": "greenlee device 123",
+      "unit": "A"
+    }
+  ]
+}

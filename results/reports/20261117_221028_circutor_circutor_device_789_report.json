@@ -1,0 +1,52 @@
+{
+  "device_type": "circutor",
+  "device_id": "circutor device 789",
+  "config": {
+    "measurements_count": 5,
+    "total_duration_seconds": 5,
+    "sampling_frequency_hz": null
+  },
+  "duration": 5.000666021998768,
+  "samples": [
+    {
+      "value_amperes": 0.07225850372605143,
+      "timestamp": 18332.14698333,
+      "wall_time": "2026-11-17T20:10:23.790961+00:00",
+      "device_type": "circutor",
+      "device_id": "circutor device 789",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 0.03029941605839701,
+      "timestamp": 18333.147732465,
+      "wall_time": "2026-11-17T20:10:24.791713+00:00",
+      "device_type": "circutor",
+      "device_id": "circutor device 789",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 0.05438998362232712,
+      "timestamp": 18334.147762957,
+      "wall_time": "2026-11-17T20:10:25.791742+00:00",
+      "device_type": "circutor",
+      "device_id": "circutor device 789",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 0.009477821621344706,
+      "timestamp": 18335.147746579,
+      "wall_time": "2026-11-17T20:10:26.791726+00:00",
+      "device_type": "circutor",
+      "device_id": "circutor device 789",
+      "unit": "A"
+    },
+    {
+      "value_amperes": 0.05538359450951246,
+      "timestamp": 18336.147340087,
+      "wall_time": "2026-11-17T20:10:27.791317+00:00",
+      "device_type": "circutor",
+      "device_id": "circutor device 789",
+      "unit": "A"
+    }
+  ]
+}

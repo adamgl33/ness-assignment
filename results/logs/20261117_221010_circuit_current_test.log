@@ -1,0 +1,77 @@
+22:10:10 | DEBUG   | Starting Greenlee on port 5001
+22:10:10 | DEBUG   | Starting Entes on port 5002
+22:10:10 | DEBUG   | Starting Circutor on port 5003
+22:10:13 | INFO    | Running test: Circuit current test
+22:10:13 | INFO    | Sampling config: SamplingConfig(measurements_count=5, total_duration_seconds=5, sampling_frequency_hz=None)
+22:10:13 | INFO    | Sampling ammeter: greenlee
+22:10:13 | INFO    | Sampling started: 5 measurements, 5.000s duration (interval 1.0000s)
+22:10:13 | DEBUG   | Measurement(value_amperes=0.06332775380089467, timestamp=18322.141527079, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 13, 785507, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.GREENLEE: 'greenlee'>, device_id='greenlee device 123', unit='A')
+22:10:14 | DEBUG   | Measurement(value_amperes=0.03871619607581954, timestamp=18323.141415097, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 14, 785391, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.GREENLEE: 'greenlee'>, device_id='greenlee device 123', unit='A')
+22:10:15 | DEBUG   | Measurement(value_amperes=0.274974722474699, timestamp=18324.141565588, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 15, 785545, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.GREENLEE: 'greenlee'>, device_id='greenlee device 123', unit='A')
+22:10:16 | DEBUG   | Measurement(value_amperes=0.1269141149729004, timestamp=18325.141757511, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 16, 785737, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.GREENLEE: 'greenlee'>, device_id='greenlee device 123', unit='A')
+22:10:17 | DEBUG   | Measurement(value_amperes=0.10407195362598205, timestamp=18326.14165132, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 17, 785631, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.GREENLEE: 'greenlee'>, device_id='greenlee device 123', unit='A')
+22:10:18 | INFO    | Sampling finished: 5 samples in 5.000s
+22:10:18 | INFO    |     -> 5 samples collected
+
+22:10:18 | INFO    | 
+Device            : greenlee/greenlee device 123
+Started at        : 2026-11-17 20:10:13.785507+00:00
+Samples           : 5
+Configured Rate   : None Hz
+Actual Rate       : 1.000 Hz
+Duration          : 5.000 s
+Mean Current      : 0.121601 A
+Median Current    : 0.104072 A
+Std Dev           : 0.092364 A
+Min Current       : 0.038716 A
+Max Current       : 0.274975 A
+
+22:10:18 | INFO    | Archiving test results to: ../results/reports/20261117_221018_greenlee_greenlee_device_123_report.json
+22:10:18 | INFO    | Sampling ammeter: entes
+22:10:18 | INFO    | Sampling started: 5 measurements, 5.000s duration (interval 1.0000s)
+22:10:18 | DEBUG   | Measurement(value_amperes=24.186885670604905, timestamp=18327.14405828, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 18, 788037, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.ENTES: 'entes'>, device_id='entes device 456', unit='A')
+22:10:19 | DEBUG   | Measurement(value_amperes=82.74163847588976, timestamp=18328.144799311, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 19, 788779, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.ENTES: 'entes'>, device_id='entes device 456', unit='A')
+22:10:20 | DEBUG   | Measurement(value_amperes=85.22796390913338, timestamp=18329.14473172, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 20, 788711, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.ENTES: 'entes'>, device_id='entes device 456', unit='A')
+22:10:21 | DEBUG   | Measurement(value_amperes=30.23787664161367, timestamp=18330.144625815, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 21, 788606, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.ENTES: 'entes'>, device_id='entes device 456', unit='A')
+22:10:22 | DEBUG   | Measurement(value_amperes=19.416328486136166, timestamp=18331.144818873, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 22, 788798, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.ENTES: 'entes'>, device_id='entes device 456', unit='A')
+22:10:23 | INFO    | Sampling finished: 5 samples in 5.001s
+22:10:23 | INFO    |     -> 5 samples collected
+
+22:10:23 | INFO    | 
+Device            : entes/entes device 456
+Started at        : 2026-11-17 20:10:18.788037+00:00
+Samples           : 5
+Configured Rate   : None Hz
+Actual Rate       : 1.000 Hz
+Duration          : 5.001 s
+Mean Current      : 48.362139 A
+Median Current    : 30.237877 A
+Std Dev           : 32.756033 A
+Min Current       : 19.416328 A
+Max Current       : 85.227964 A
+
+22:10:23 | INFO    | Archiving test results to: ../results/reports/20261117_221023_entes_entes_device_456_report.json
+22:10:23 | INFO    | Sampling ammeter: circutor
+22:10:23 | INFO    | Sampling started: 5 measurements, 5.000s duration (interval 1.0000s)
+22:10:23 | DEBUG   | Measurement(value_amperes=0.07225850372605143, timestamp=18332.14698333, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 23, 790961, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.CIRCUTOR: 'circutor'>, device_id='circutor device 789', unit='A')
+22:10:24 | DEBUG   | Measurement(value_amperes=0.03029941605839701, timestamp=18333.147732465, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 24, 791713, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.CIRCUTOR: 'circutor'>, device_id='circutor device 789', unit='A')
+22:10:25 | DEBUG   | Measurement(value_amperes=0.05438998362232712, timestamp=18334.147762957, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 25, 791742, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.CIRCUTOR: 'circutor'>, device_id='circutor device 789', unit='A')
+22:10:26 | DEBUG   | Measurement(value_amperes=0.009477821621344706, timestamp=18335.147746579, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 26, 791726, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.CIRCUTOR: 'circutor'>, device_id='circutor device 789', unit='A')
+22:10:27 | DEBUG   | Measurement(value_amperes=0.05538359450951246, timestamp=18336.147340087, wall_time=datetime.datetime(2026, 11, 17, 20, 10, 27, 791317, tzinfo=datetime.timezone.utc), device_type=<AmmeterType.CIRCUTOR: 'circutor'>, device_id='circutor device 789', unit='A')
+22:10:28 | INFO    | Sampling finished: 5 samples in 5.001s
+22:10:28 | INFO    |     -> 5 samples collected
+
+22:10:28 | INFO    | 
+Device            : circutor/circutor device 789
+Started at        : 2026-11-17 20:10:23.790961+00:00
+Samples           : 5
+Configured Rate   : None Hz
+Actual Rate       : 1.000 Hz
+Duration          : 5.001 s
+Mean Current      : 0.044362 A
+Median Current    : 0.054390 A
+Std Dev           : 0.024571 A
+Min Current       : 0.009478 A
+Max Current       : 0.072259 A
+
+22:10:28 | INFO    | Archiving test results to: ../results/reports/20261117_221028_circutor_circutor_device_789_report.json
