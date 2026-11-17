@@ -29,9 +29,9 @@ analysis:
 
 logger:
   level: "DEBUG"
-  directory: "../results/logs"
+  directory: "results/logs"
   name: "default_logger"
 
 result_management:
-  directory: "../results/reports"
+  directory: "results/reports"
   file_name: "report"
