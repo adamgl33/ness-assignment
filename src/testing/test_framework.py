@@ -16,7 +16,7 @@ from src.models.ammeter_type import AmmeterType
 from src.models.sampling_config import SamplingConfig
 from src.testing.sampling_engine import SamplingEngine
 from src.utils.config import load_config, get_test_name, get_ammeters
-from src.utils.helpers import setup_emulators
+from src.testing.ammeter_api import setup_emulators
 from src.utils.logger import TestLogger, get_default_logger
 
 

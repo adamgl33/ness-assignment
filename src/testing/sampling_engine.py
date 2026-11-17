@@ -13,7 +13,7 @@ import time
 from typing import Dict
 from src.models.ammeter_type import AmmeterType
 from src.models.sampling_config import SamplingConfig
-from src.utils.helpers import request_measurement_from_ammeter
+from src.testing.ammeter_api import request_measurement_from_ammeter
 from src.utils.logger import get_default_logger
 
 

@@ -1,3 +1,11 @@
+"""
+Interface to ammeters
+
+Notes:
+- Handles setup of emulators
+- Reads measurements
+
+"""
 import threading
 import time
 import datetime
@@ -47,18 +55,26 @@ def request_measurement_from_ammeter(ammeter_type: AmmeterType, device_id: str, 
     log = get_default_logger(config)
     with socket(AF_INET, SOCK_STREAM) as s:
         port = get_ammeter_settings(config, ammeter_type, "port")
+        if not port:
+            log.warning(f"Port not configured for {ammeter_type}")
+            return None
         command = get_ammeter_settings(config, ammeter_type, "command")
+        if not command:
+            log.warning(f"Command not configured for {ammeter_type}")
+            return None
         s.connect(('localhost', port))
         s.sendall(command.encode("utf-8"))
         data = s.recv(1024)
         if data:
-            return Measurement(
+            measurement = Measurement(
                 value_amperes=float(data.decode('utf-8')),
                 timestamp=time.monotonic(),
                 wall_time=datetime.datetime.now(datetime.timezone.utc),
                 device_type=ammeter_type,
                 device_id=device_id,
             )
+            log.debug(measurement)
+            return measurement
         else:
             log.warning(f"{ammeter_type} didnt return data on port {port}, using command {command}")
             return None

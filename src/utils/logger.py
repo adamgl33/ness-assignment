@@ -69,15 +69,6 @@ class TestLogger:
     def warning(self, message: str):
         self.logger.warning(message)
 
-if __name__ == "__main__":
-    config_path= "../../config/config.yaml"
-    config = load_config(config_path)
-    log = TestLogger(config)
-    log.info("logger test")
-    log.debug("debug test")
-    log.warning("warn test")
-    log.error("error test")
-    log.info(f"Log file: {log.log_file}")
 
 def get_default_logger(config: Dict) -> logging.Logger:
     name = get_logger_default_name(config)
