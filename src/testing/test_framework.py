@@ -14,8 +14,9 @@ from typing import Dict
 
 from src.models.ammeter_type import AmmeterType
 from src.models.sampling_config import SamplingConfig
+from src.models.test_result import TestResult
 from src.testing.sampling_engine import SamplingEngine
-from src.utils.config import load_config, get_test_name, get_ammeters
+from src.utils.config import load_config, get_test_name, get_ammeters, get_ammeter_settings
 from src.testing.ammeter_api import setup_emulators
 from src.utils.logger import TestLogger, get_default_logger
 
@@ -36,10 +37,15 @@ class AmmeterTestFramework:
         for ammeter in get_ammeters(config).keys():
             log.info(f"Sampling ammeter: {ammeter}")
             ammeter_type = AmmeterType(ammeter)
+            device_id = get_ammeter_settings(config, ammeter_type, "device_id")
             try:
-                engine = SamplingEngine(ammeter_type, "device id", config)
+                # get measurements
+                engine = SamplingEngine(ammeter_type, device_id, config)
                 samples = engine.run()
                 log.info(f"    -> {len(samples)} samples collected\n")
+                # save results
+                result = TestResult(ammeter_type, device_id, cfg, samples)
+                log.info(f"\n{result.summary()}\n")
             except ValueError as e:
                 log.error(f"    ERROR -> {e}\n")
 
