@@ -4,7 +4,8 @@ import sys
 from datetime import datetime
 from typing import Dict
 
-from src.utils.config import get_logger_default_name, get_test_name, get_logger_level, get_logger_dir, load_config
+from src.utils.Utils import sanitize_filename
+from src.utils.config import get_logger_default_name, get_test_name, get_logger_level, get_logger_dir
 
 
 class TestLogger:
@@ -25,7 +26,7 @@ class TestLogger:
 
         # configure filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        log_file = f"{log_dir}/{timestamp}_{self._test_name}.log"
+        log_file = f"{log_dir}/{timestamp}_{sanitize_filename(self._test_name)}.log"
         self.log_file = log_file
 
         # config logger

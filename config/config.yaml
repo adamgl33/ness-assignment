@@ -1,5 +1,5 @@
 test:
-  name: "circuit_current_test"
+  name: "Circuit current test"
 
 testing:
   sampling:
@@ -33,3 +33,5 @@ logger:
   name: "default_logger"
 
 result_management:
+  directory: "../results/reports"
+  file_name: "report"

@@ -37,3 +37,9 @@ def get_log_level_from_string(level_name: str, default: int = logging.INFO) -> i
 
 def get_sampling_config(config: Dict) -> Any:
     return config.get("testing", {}).get("sampling", {})
+
+def get_report_dir(config: Dict) -> Any:
+    return config.get("result_management", {}).get("directory",{"../results/reports"})
+
+def get_report_filename(config: Dict) -> Any:
+    return config.get("result_management", {}).get("file_name",{"report"})

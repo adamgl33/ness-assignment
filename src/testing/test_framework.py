@@ -19,6 +19,7 @@ from src.testing.sampling_engine import SamplingEngine
 from src.utils.config import load_config, get_test_name, get_ammeters, get_ammeter_settings
 from src.testing.ammeter_api import setup_emulators
 from src.utils.logger import TestLogger, get_default_logger
+from src.utils.reporter import save_report
 
 
 class AmmeterTestFramework:
@@ -31,8 +32,8 @@ class AmmeterTestFramework:
     def run_test(self, config: Dict) :
         log = get_default_logger(config)
         log.info(f"Running test: {get_test_name(config)}")
-        cfg = SamplingConfig.from_config(config)
-        log.info(f"Sampling config: {cfg}")
+        sampling_config = SamplingConfig.from_config(config)
+        log.info(f"Sampling config: {sampling_config}")
 
         for ammeter in get_ammeters(config).keys():
             log.info(f"Sampling ammeter: {ammeter}")
@@ -43,9 +44,13 @@ class AmmeterTestFramework:
                 engine = SamplingEngine(ammeter_type, device_id, config)
                 samples = engine.run()
                 log.info(f"    -> {len(samples)} samples collected\n")
+
                 # save results
-                result = TestResult(ammeter_type, device_id, cfg, samples)
+                result = TestResult(ammeter_type, device_id, sampling_config, samples)
                 log.info(f"\n{result.summary()}\n")
+
+                # Archive results
+                save_report(result, config)
             except ValueError as e:
                 log.error(f"    ERROR -> {e}\n")
 

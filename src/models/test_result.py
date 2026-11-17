@@ -1,5 +1,8 @@
 import statistics
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
+from datetime import datetime
+from enum import Enum
+from typing import Any
 
 from src.models.ammeter_type import AmmeterType
 from src.models.measurement import Measurement
@@ -68,3 +71,21 @@ class TestResult:
         }
         lines = [f"{key:<18}: {value}" for key, value in summary.items()]
         return "\n".join(lines)
+
+    # for json serialization
+    def asdict(self) -> dict[str, Any]:
+        return asdict(self, dict_factory=_json_dict_factory)
+
+def _clean_value(value: Any) -> Any:
+    if isinstance(value, Enum):
+        return value.value
+    if isinstance(value, datetime):
+        return value.isoformat()
+    if isinstance(value, list):
+        return [_clean_value(item) for item in value]
+    return value
+
+def _json_dict_factory(items: list[tuple[str, Any]]) -> dict[str, Any]:
+    return {key: _clean_value(value) for key, value in items}
+
+
