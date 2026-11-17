@@ -71,4 +71,4 @@ class SamplingEngine:
 
         elapsed = time.monotonic() - start
         self.log.info("Sampling finished: %d samples in %.3fs",n, elapsed)
-        return samples
+        return samples, elapsed

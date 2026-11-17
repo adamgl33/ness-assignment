@@ -23,7 +23,7 @@ from src.utils.reporter import save_report
 
 
 class AmmeterTestFramework:
-    def __init__(self, config_path: str = "../../config/config.yaml"):
+    def __init__(self, config_path: str = "../config/config.yaml"):
         self.config = load_config(config_path)
         self.log = TestLogger(self.config)
         setup_emulators(self.config)
@@ -42,11 +42,11 @@ class AmmeterTestFramework:
             try:
                 # get measurements
                 engine = SamplingEngine(ammeter_type, device_id, config)
-                samples = engine.run()
+                samples, duration = engine.run()
                 log.info(f"    -> {len(samples)} samples collected\n")
 
                 # save results
-                result = TestResult(ammeter_type, device_id, sampling_config, samples)
+                result = TestResult(ammeter_type, device_id, sampling_config, duration, samples)
                 log.info(f"\n{result.summary()}\n")
 
                 # Archive results
@@ -54,9 +54,4 @@ class AmmeterTestFramework:
             except ValueError as e:
                 log.error(f"    ERROR -> {e}\n")
 
-
-if __name__ == "__main__":
-
-        test = AmmeterTestFramework()
-        test.run_test(test.config)
 

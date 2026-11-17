@@ -14,6 +14,7 @@ class TestResult:
     device_type: AmmeterType
     device_id: str
     config: SamplingConfig
+    duration: float
     samples: list[Measurement]
 
     # Statistical metrics
@@ -48,12 +49,7 @@ class TestResult:
     # Timing quality metrics
     @property
     def actual_rate_hz(self) -> float:
-        span = self.samples[-1].timestamp - self.samples[0].timestamp
-        return (self.n - 1) / span if span > 0 else float("inf")
-
-    @property
-    def duration_s(self) -> float:
-        return self.samples[-1].timestamp - self.samples[0].timestamp
+        return self.n / self.duration if self.duration > 0 else float("inf")
 
     def summary(self) -> str:
         summary = {
@@ -62,7 +58,7 @@ class TestResult:
             "Samples": self.n,
             "Configured Rate": f"{self.config.sampling_frequency_hz} Hz",
             "Actual Rate": f"{self.actual_rate_hz:.3f} Hz",
-            "Duration": f"{self.duration_s:.3f} s",
+            "Duration": f"{self.duration:.3f} s",
             "Mean Current": f"{self.mean_current:.6f} A",
             "Median Current": f"{self.median_current:.6f} A",
             "Std Dev": f"{self.std_dev:.6f} A",
